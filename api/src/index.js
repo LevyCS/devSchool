@@ -15,21 +15,21 @@ app.get('/matricula', async (req, resp) => {
 
 app.post('/matricula', async (req, resp) => {
     try {
-        if(req.body.nomeAluno == '' || req.body.numeroChamada == '' || req.body.nomeCruso == '' || req.body.nomeTurma == '') {  
-            resp.send( {erro: 'Um ou mais campos não estão preenchidos'} );
+        if(req.body.nomeAluno == '' || req.body.nomeAluno == null || req.body.numeroChamada == '' || req.body.numeroChamada == null || req.body.nomeCruso == '' || req.body.nomeCruso == null || req.body.nomeTurma == '' || req.body.nomeTurma == null) {  
+            return resp.send( {erro: 'Um ou mais campos não estão preenchidos'} );
         }
 
         if(isNaN(req.body.numeroChamada)) {
-            resp.send( { erro: 'Chamada precisa ser um número'})
+            return resp.send( { erro: 'Chamada precisa ser um número'})
         }
 
         if(req.body.numeroChamada < 0) {
-            resp.send ( {erro: 'Chamada precisa ser um número positivo'})
+            return resp.send ( {erro: 'Chamada precisa ser um número positivo'})
         }
 
         let condicao = await db.tb_matricula.findOne({where: {nr_chamada: req.body.numeroChamada, nm_turma: req.body.nomeTurma}})
         if (condicao != null) {
-            resp.send( {erro: 'Esta chamada pertence a um aluno'} )
+            return resp.send( {erro: 'Esta chamada pertence a um aluno'} )
         }
 
         let pessoa = {
@@ -47,16 +47,16 @@ app.post('/matricula', async (req, resp) => {
 
 app.put('/matricula/:id', async (req, resp) => {
     try {
-        if(req.body.nomeAluno == '' || req.body.numeroChamada == '' || req.body.nomeCruso == '' || req.body.nomeTurma == '') {  
-            resp.send( {erro: 'Um ou mais campos não estão preenchidos'} );
+        if(req.body.nomeAluno == '' || req.body.nomeAluno == null || req.body.numeroChamada == '' || req.body.numeroChamada == null || req.body.nomeCruso == '' || req.body.nomeCruso == null || req.body.nomeTurma == '' || req.body.nomeTurma == null) {  
+            return resp.send( {erro: 'Um ou mais campos não estão preenchidos'} );
         }
 
         if(isNaN(req.body.numeroChamada)) {
-            resp.send( { erro: 'Chamada precisa ser um número'})
+            return resp.send( { erro: 'Chamada precisa ser um número'})
         }
 
         if(req.body.numeroChamada < 0) {
-            resp.send ( {erro: 'Chamada precisa ser um número positivo'})
+            return resp.send ( {erro: 'Chamada precisa ser um número positivo'})
         }
 
         let condicao = await db.tb_matricula.findOne({where: {nr_chamada: req.body.numeroChamada, nm_turma: req.body.nomeTurma}})
