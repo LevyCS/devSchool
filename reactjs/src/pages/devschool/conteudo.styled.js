@@ -78,7 +78,7 @@ const Container = styled.div`
         margin-left: 2rem;
         align-items: center;
 
-        cursor: pointer;
+        cursor: pointer;    
     }
 
     .alunosMatriculados {
@@ -153,7 +153,6 @@ const Container = styled.div`
     .linha-alternada {
         background-color: #F5F5F5;
     }
-
 `
 
 export { Container }

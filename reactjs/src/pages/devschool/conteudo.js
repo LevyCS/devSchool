@@ -75,6 +75,7 @@ export default function Conteudo () {
                 onClick: async() => { 
                     await api.Excluir(id)
                     toast.dark('Aluno excluido com sucesso')
+                    carregarAlunos()
                 }
               },
               {
@@ -82,8 +83,6 @@ export default function Conteudo () {
               }
             ]
           });
-
-        carregarAlunos()
     }
 
     const alterarAluno = async(item) => {
@@ -113,7 +112,7 @@ export default function Conteudo () {
             <div className="novoAluno">
                 <div className="novoAluno-titulo"> 
                     <BarraRoxa> </BarraRoxa>
-                    <h1 className="novoAluno-titulo-texto"> {idAlterado == 0 ? "Novo Aluno" : `Alterando aluno ${idAlterado}`} </h1>
+                    <h1 className="novoAluno-titulo-texto"> {idAlterado === 0 ? "Novo Aluno" : `Alterando aluno ${idAlterado}`} </h1>
                 </div>
                 <div className="novoAluno-formulario"> 
                     <div className="novoAluno-formulario-agp">
@@ -136,7 +135,7 @@ export default function Conteudo () {
                             <InputStyled value={turma} onChange={e => setTurma(e.target.value)} />
                         </div>
                     </div>
-                    <button className="novoAluno-cadastrar" onClick={inserirAluno}> {idAlterado == 0 ? "Cadastrar" : "Alterar"} </button>
+                    <button className="novoAluno-cadastrar" onClick={inserirAluno}> {idAlterado === 0 ? "Cadastrar" : "Alterar"} </button>
                 </div>
             </div>
             <div className="alunosMatriculados">  
